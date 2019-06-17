@@ -56,7 +56,7 @@ Essentially, I think we'll find out the exact requirements for compatibility onc
 
 I've setup a [fork](https://github.com/James-Large/sktime) of sktime, where I've [branched off of dev](https://github.com/James-Large/sktime/tree/dl4tsc/sktime/classifiers), and started adding the converted network fcn, in couple different formats. As with the user testing session on Monday, you definitely want to be branching off of dev instead of master in general when workign with sktime. 
 
-The original author, Hassan Fawaz, and I have started with the start of a basic conversion of the FCN network, [original](https://github.com/hfawaz/dl-4-tsc/blob/master/classifiers/fcn.py), direct conversion [number one](https://github.com/James-Large/sktime/blob/dl4tsc/sktime/contrib/deeplearning_based/fcn_fawaz.py) with KerasClassifier as the super class, and attempted conversion [number two](https://github.com/James-Large/sktime/blob/dl4tsc/sktime/contrib/deeplearning_based/fcn_noKC.py) with sktime's BaseClassifier as the super class.
+The original author, Hassan Fawaz, and I have started with a basic conversion of the FCN network, [original](https://github.com/hfawaz/dl-4-tsc/blob/master/classifiers/fcn.py), direct conversion [number one](https://github.com/James-Large/sktime/blob/dl4tsc/sktime/contrib/deeplearning_based/fcn_fawaz.py) with KerasClassifier as the super class, and attempted conversion [number two](https://github.com/James-Large/sktime/blob/dl4tsc/sktime/contrib/deeplearning_based/fcn_noKC.py) with sktime's BaseClassifier as the super class.
 
 Broadly, Keras models have three main parts to their definition: 
 
