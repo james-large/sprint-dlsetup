@@ -1,15 +1,30 @@
 # sprint-dlsetup
-This is essentially a compilation of various semi-random links/instructions for setting up everything for Keras and sktime for the Alan Turing sprint event deep learning sub-project. 
+This is essentially a compilation of various semi-random links/instructions for setting up everything for Keras and sktime for the Alan Turing sprint event deep learning sub-project, and a setting out of the aims and intentions of it. 
 
-The deep learning sub-project will largely involve interfacing with the networks defined in by [this](https://github.com/hfawaz/dl-4-tsc) repo, which are not in any kind of scikit learn format/structure. This will involve refactoring the code to the required format for compatibility with the rest of the sktime classifiers (to be decided/discovered during the event...), adding docs, and adding/performing tests. If this process turns out to be quite easy (dependant on language/code factors discussed later, time spent with head down coding during this week, and the expertise of those undertaking this project), we may implement networks from other sources of different kinds from scratch, however this is definitely a could rather than should or must.  
+## Project Intentions
+
+The deep learning sub-project will initially and mainly involve interfacing with the networks defined in by [this](https://github.com/hfawaz/dl-4-tsc) repo, which are not in any kind of scikit learn format/structure. This will involve refactoring the code to the required format for compatibility with the rest of the sktime classifiers (to be decided/discovered during the event...), adding docs, and adding/performing tests. 
+
+As a result, the first set of classifiers implemented will be particular, pre-defined architectures of various kinds. For example, one of the networks if a simple Fully Connected Network (FCN), i.e. consecutive dense layers where the outputs of each layer connect to all the inputs of the next. In the [source paper](https://link.springer.com/article/10.1007%2Fs10618-019-00619-1), a particular number of layers, nodes in each layer, etc. are defined which we shall interface with exactly. 
+
+Further, the tuning of network hyper-parameters like batch size, dropout, is a possible via the KerasClassifier wrapper and GridsearchCV in scikitlearn (see below) which we could also emulate this week. 
+
+This is for a couple of reasons. First, confirming correctness of the interfacing via recreation of some results is obviously easier if we maintain architectures. Second, the source paper represents a decent anchor point for a comprehensive comparative evaluation for deep learning within TSC in particular. While it has of course taken over computer vision and various image classification tasks, it has not yet overtaken TSC, but maybe this serves as the start of it. Having access to these predefined architectures to run in it without expertise knowledge is a very good thing for interested users. 
+
+If this process turns out to be quite easy (dependant on language/code factors discussed later, time spent with head down coding during this week, and the expertise of those undertaking this project), we may implement networks from other sources of different kinds from scratch, however this is definitely a could rather than should or must. See the [project page](https://github.com/alan-turing-institute/sktime/projects/5) for a basic [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method0) of this week.
+
+A possible outcome, which may be born naturally from how we undertake the project, is to implement a template class for a Keras network, such that a future user/contributor to sktime need only define any particular data preprocessing and a build_network function - defining the core network architecture - to include their own network architectures in any grander pipelines they want to use in sktime. 
 
 We will be implementing these with Keras and with a Tensorflow backend. In the future we can of course abstract away from Tensorflow and use whatever backend, but for the purposes of a sprint event, let's stick to using that. 
+
+One factor which I'm not sure on the possible outcome of is making the installing and usage of Keras/Tensorflow as easy as possible (and/or optional, when not intending to use these networks) in terms of dependancy management within user's environments etc. We'll have to have a look at how cython dependancies have been handled and see what similar systems we can implement for this, however CUDNN is almost certainly something that each user would have to install themselves if gpu usage is required.
+
 
 ## Prerequisites 
 
 Apologies, but a lot of these points will be most relevant for windows users, since that has always been my OS by default. For steps 4, 5, 6 (gpu, tensorflow, Keras setup), I strongly recommend following [this](https://github.com/antoniosehk/keras-tensorflow-windows-installation) guide for windows users. As far as I know the entire process should be easier for Linux users regardless. Mac users you're on you're own I'm afraid
 
-1. [Python 3](https://www.python.org/downloads/) and the built-in package manager pip (should be installed with pythonm unless you chose a very old version), optionally [Anaconda](https://docs.anaconda.com/anaconda/install/windows/) for more automated virtual environment management, or can also be handled via pip alone just fine. 
+1. [Python 3](https://www.python.org/downloads/) and the built-in package manager pip (should be installed with pythonm unless you chose a very old version), optionally [Anaconda](https://docs.anaconda.com/anaconda/install/windows/) for more automated virtual environment management, or can also be handled via pip alone just fine. See the sktime team's own [instructions](https://github.com/alan-turing-institute/sktime/wiki/2019-sktime-MLJ-tutorial-development-sprint#getting-started) for more info. 
 2. Setup a virtual environment, up to you whether you want to use [virtualenv](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/) (via pip) or conda (via [command line](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/) or the navigator GUI) etc. Numpy, Cython etc will be needed at minimum for sktime. see installation instructions link in next point. 
 3. Sktime cloned and [installed](https://github.com/alan-turing-institute/sktime#installation). I have a fork [here](https://github.com/James-Large/sktime) with the implementation process started, but unsure how the Turing folks will want to structure the contributions over the course of this week. Side note - if you're using the PyCharm IDE, doing everything git-related within the IDE is probably easiest, can create the local project by cloning the repo automatically etc. 
 4. Optional: CUDA and CUDNN if wanting to use a GPU (needed for anything other than basic testing on small data, really) 
@@ -18,7 +33,7 @@ Apologies, but a lot of these points will be most relevant for windows users, si
 
 ## My versioning
 
-As said before, I'd argue to just follow the instructions [here](https://github.com/antoniosehk/keras-tensorflow-windows-installation) for what look like the most up-to-date versions of everything as of 2 months ago (I installed all my stuff a year+ ago), but that which crucially should work together. If all else fails, these are my versions of the finicky things: 
+As said before, I'd argue to just follow the instructions [here](https://github.com/antoniosehk/keras-tensorflow-windows-installation) for what look like the most up-to-date versions of everything as of 2 months ago (I installed all my stuff a year+ ago, and am following a 'aint broke, dont fix it' strategy), but that which crucially should work together. If all else fails, these are my versions of the finicky things: 
 
 * CUDNN                  9.2
 * tensorflow-gpu         1.8.0     
@@ -39,15 +54,14 @@ Essentially, I think we'll find out the exact requirements for compatibility onc
 
 ## Working(?) example, conversion stages
 
-I've setup a [fork](https://github.com/James-Large/sktime) of sktime, where I've [branched off of dev](https://github.com/James-Large/sktime/tree/dl4tsc/sktime/classifiers) (which is more up to date than master, as I understand it), as started adding the converted network fcn, in couple different formats. 
+I've setup a [fork](https://github.com/James-Large/sktime) of sktime, where I've [branched off of dev](https://github.com/James-Large/sktime/tree/dl4tsc/sktime/classifiers), and started adding the converted network fcn, in couple different formats. As with the user testing session on Monday, you definitely want to be branching off of dev instead of master in general when workign with sktime. 
 
-fawaz version 
+The original author, Hassan Fawaz, and I have started with the start of a basic conversion of the FCN network, [original](https://github.com/hfawaz/dl-4-tsc/blob/master/classifiers/fcn.py), direct conversion [number one](https://github.com/James-Large/sktime/blob/dl4tsc/sktime/contrib/deeplearning_based/fcn_fawaz.py) with KerasClassifier as the super class, and attempted conversion [number two](https://github.com/James-Large/sktime/blob/dl4tsc/sktime/contrib/deeplearning_based/fcn_noKC.py) with sktime's BaseClassifier as the super class.
 
-updated version 
+Broadly, Keras models have three main parts to their definition: 
 
+* The input shape (series length, number of dimensions, batch size). The shape of all standard later layers are inferred from the previous in Keras
+* The architecture (number and type of the layers etc.)
+* The parameters of the training/convergence process; the loss function, any validation metrics, and the optimisation algorithm (e.g. gradient descent, Adam optimiser etc.)
 
-
-different possible layouts 
-
-code exampels 
-
+Callbacks that effect the fit process can also be added and various other addons, but these three are the main aspects. 
