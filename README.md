@@ -36,3 +36,18 @@ This part is still somewhat up in the air, however a few things of note are:
   * etcetc 
 
 Essentially, I think we'll find out the exact requirements for compatibility once we sit down and have a chat during the week. In general, if it works with scikit learn, it should at the very least be very quick to refactor into working with sktime. Further, refactoring and so on can happen after this week - this is a sprint after all.
+
+## Working(?) example, conversion stages
+
+I've setup a [fork](https://github.com/James-Large/sktime) of sktime, where I've [branched off of dev](https://github.com/James-Large/sktime/tree/dl4tsc/sktime/classifiers) (which is more up to date than master, as I understand it), as started adding the converted network fcn, in couple different formats. 
+
+fawaz version 
+
+updated version 
+
+
+
+different possible layouts 
+
+code exampels 
+
