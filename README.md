@@ -65,3 +65,25 @@ Broadly, Keras models have three main parts to their definition:
 * The parameters of the training/convergence process; the loss function, any validation metrics, and the optimisation algorithm (e.g. gradient descent, Adam optimiser etc.)
 
 Callbacks that effect the fit process can also be added and various other addons, but these three are the main aspects. 
+
+## Outcomes
+
+### Tuesday
+
+* stuff
+* more stuff
+
+### Wednesday
+
+* stuff
+* more stuff
+
+### Thursday
+
+* stuff
+* more stuff
+
+### Friday
+
+* stuff
+* more stuff
