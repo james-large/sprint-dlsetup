@@ -70,8 +70,12 @@ Callbacks that effect the fit process can also be added and various other addons
 
 ### Tuesday
 
-* stuff
-* more stuff
+* Contributors: James Large, Aaron Bostrom
+* Decided on a basic format for the conversion - not using KerasClassifier directly but using some functionality from it
+* Made a base class for the conversions, BaseDeepLearner, which inherits from BaseClassifier. Has some functionality for one-hot-encoding labels 
+* Set up a basic testbed for compatibility, one which simply loads data, constructs classifier, fits and scores, and one which does the same but within a basic pipeline object. A third, using the high-level time series tasks and strategy interfaces were not working for as yet unknown reasons, class labels within the networks were numerical of course, but still reamining as strings in the high-level interface for comparing true and predicted labels
+* Converted a number of the networks in dl-4-tsc, all of the simpler ones (simpler as in without extra preprocessing or augmentation steps outside of the actual keras model definition) and converted two of the more difficult examples. Fully testing these will require an edit to the base learner's predict methods
+* Started experiments to run overnight with those completed networks to confirm parity between published and reproduced results/networks
 
 ### Wednesday
 
