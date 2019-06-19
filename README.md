@@ -68,7 +68,7 @@ Callbacks that effect the fit process can also be added and various other addons
 
 ## Outcomes
 
-### Tuesday
+### Tuesday, 18/06/2019 
 
 * Contributors: James Large, Aaron Bostrom
 * Decided on a basic format for the conversion - not using KerasClassifier directly but using some functionality from it
@@ -77,17 +77,20 @@ Callbacks that effect the fit process can also be added and various other addons
 * Converted a number of the networks in dl-4-tsc, all of the simpler ones (simpler as in without extra preprocessing or augmentation steps outside of the actual keras model definition) and converted two of the more difficult examples. Fully testing these will require an edit to the base learner's predict methods
 * Started experiments to run overnight with those completed networks to confirm parity between published and reproduced results/networks
 
-### Wednesday
+### Wednesday, 18/06/2019 
+
+* Experiments from day before did not work, wasn't compatible with something later in the experimental pipeline
+* Fixed this error, and finished implementation of networks. MCNN, however, had and error where (we believe) it was running out of memory without reporting it. To be fixed tomorrow
+* All networks aside from MCNN passing basic run tests, running experiments again over night
+
+### Thursday, 18/06/2019 
 
 * stuff
 * more stuff
 
-### Thursday
+### Friday, 18/06/2019 
 
 * stuff
 * more stuff
 
-### Friday
-
-* stuff
-* more stuff
+## Beyond
