@@ -85,8 +85,10 @@ Callbacks that effect the fit process can also be added and various other addons
 
 ### Thursday, 18/06/2019 
 
-* stuff
-* more stuff
+* Refactored static dl-4-tsc networks into own directory
+* Finshed off conversion/fixes, however a memory leak is potentially still aroudn. Currently clearing backend/garbage collecting every model/experiment run
+* Fixed the label encoding issue, the networks now work with high-level sktime functionality, TSCTask, TSCStrategy etc
+* Got started on implementing tunable networks
 
 ### Friday, 18/06/2019 
 
