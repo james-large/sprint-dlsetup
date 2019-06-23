@@ -103,5 +103,6 @@ Callbacks that effect the fit process can also be added and various other addons
 Things to be done beyond the sprint week: 
 
 * Refactoring and full doc strings in accordance with the expectations of the wider codebase
-* Making design decisions and implementing them on the tunable networks
-* Finding and fixing a potential memory leak, which only becomes a problem (on James Large's Titan X GPU) after many consecutive runs in a single execution. 
+* Making design decisions and implementing them on the tunable networks. In the meantime, refactoring the other networks to allow for tuning, while maintaining defaults in line with Fawaz et. al
+* Finding and fixing a potential memory leak, which only becomes a problem (on James Large's Titan X GPU) after many consecutive runs in a single execution
+* Performing reproduction tests on the UCR archive
