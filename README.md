@@ -79,12 +79,14 @@ Callbacks that effect the fit process can also be added and various other addons
 
 ### Wednesday, 18/06/2019 
 
+* Contributors: James Large, Aaron Bostrom
 * Experiments from day before did not work, wasn't compatible with something later in the experimental pipeline
 * Fixed this error, and finished implementation of networks. MCNN, however, had and error where (we believe) it was running out of memory without reporting it. To be fixed tomorrow
 * All networks aside from MCNN passing basic run tests, running experiments again over night
 
 ### Thursday, 18/06/2019 
 
+* Contributors: James Large
 * Refactored static dl-4-tsc networks into own directory
 * Finshed off conversion/fixes, however a memory leak is potentially still aroudn. Currently clearing backend/garbage collecting every model/experiment run
 * Fixed the label encoding issue, the networks now work with high-level sktime functionality, TSCTask, TSCStrategy etc
@@ -92,6 +94,7 @@ Callbacks that effect the fit process can also be added and various other addons
 
 ### Friday, 18/06/2019 
 
+* Contributors: James Large
 * A good start on allowing for tuned networks. Refactored CNN to put tunable parameters into init, and created a wrapper, Tuned_CNN(), to grid/randomized SearchCV over a grid of these parameters. 
 * Tidying and refactoring of the code and tests, preparing for an initial pull request back into the sktime dev branch 
 
