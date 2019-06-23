@@ -92,7 +92,13 @@ Callbacks that effect the fit process can also be added and various other addons
 
 ### Friday, 18/06/2019 
 
-* stuff
-* more stuff
+* A good start on allowing for tuned networks. Refactored CNN to put tunable parameters into init, and created a wrapper, Tuned_CNN(), to grid/randomized SearchCV over a grid of these parameters. 
+* Tidying and refactoring of the code and tests, preparing for an initial pull request back into the sktime dev branch 
 
 ## Beyond
+
+Things to be done beyond the sprint week: 
+
+* Refactoring and full doc strings in accordance with the expectations of the wider codebase
+* Making design decisions and implementing them on the tunable networks
+* Finding and fixing a potential memory leak, which only becomes a problem (on James Large's Titan X GPU) after many consecutive runs in a single execution. 
